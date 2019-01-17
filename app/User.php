@@ -31,4 +31,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = ['password', 'remember_token'];
 
+	//esta funcio determina si hay cambios en la contraseña
+	public function setPasswordAttribute($valor){
+		if(!empty($valor)){
+			$this->attributes['Password'] = \Hash::make($valor);
+		}
+	}
+
 }

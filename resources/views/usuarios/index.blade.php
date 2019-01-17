@@ -4,11 +4,11 @@
 	$mensaje=Session::get('message');
 ?>
 
-@if($mensaje=='store')
+@if(Session::has('message'))
 
 
 <div class="alert alert-success alert-dismissible fade show" role="alert">
-  <strong>Holy guacamole!</strong> Usuario creado correctamente
+  <strong>Holy guacamole!</strong> {{Session::get('message')}}
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -28,7 +28,9 @@
 		<tbody>
 			<td>{{$user->name}}</td>
 			<td>{{$user->email}}</td>
-			<td></td>
+			<td>
+				{!!link_to_route('usuario.edit', $title = 'Actualizar', $parameters = $user->id, $attributes = ['class'=>'btn btn-success btn-sm']);!!}
+			</td>
 		</tbody>
 		@endforeach
 	</table>
